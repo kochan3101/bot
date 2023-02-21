@@ -268,7 +268,7 @@ def callback_inline(call):
                                  "Куда отправимся дальше?", reply_markup=kudadalshemarket())
             elif call.data == 'galamart':
                 message(call)
-                cell_list = worksheet.findall("Galamart")
+                cell_list = worksheet.findall("Galamart ")
                 for i in cell_list:
                     formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
@@ -289,7 +289,7 @@ def callback_inline(call):
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'tinkoffinst':
                 message(call)
-                cell_list = worksheet.findall("Tinkoff Инст")
+                cell_list = worksheet.findall("Tinkoff инст")
                 for i in cell_list:
                     formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
@@ -443,7 +443,7 @@ def callback_inline(call):
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'perekrestok':
                 message(call)
-                cell_list = worksheet.findall("Перекрёсток")
+                cell_list = worksheet.findall("Перекрёсток ")
                 for i in cell_list:
                     formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
@@ -541,7 +541,7 @@ def callback_inline(call):
                                  "Куда отправимся дальше?", reply_markup=kudadalshcafe())
             elif call.data == 'niyama':
                 message(call)
-                cell_list = worksheet.findall("Нияма")
+                cell_list = worksheet.findall("Нияма ")
                 for i in cell_list:
                     formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
@@ -604,7 +604,7 @@ def callback_inline(call):
                                  "Куда отправимся дальше?", reply_markup=kudadalshepodpiska())
             elif call.data == 'kinopoisk':
                 message(call)
-                cell_list = worksheet.findall("Кинопоиск")
+                cell_list = worksheet.findall("Кинопоиск ")
                 for i in cell_list:
                     formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
@@ -632,7 +632,7 @@ def callback_inline(call):
                                  "Куда отправимся дальше?", reply_markup=kudadalshepodpiska())
             elif call.data == 'tamaris':
                 message(call)
-                cell_list = worksheet.findall("Tamaris")
+                cell_list = worksheet.findall("Tamaris ")
                 for i in cell_list:
                     formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
@@ -772,7 +772,7 @@ def kudadalshcafe():
 
 def kudadalshflowers():
     markup = types.InlineKeyboardMarkup(row_width=1)
-    item1 = types.InlineKeyboardButton('Кафе/рестораны', callback_data='cafe')
+    item1 = types.InlineKeyboardButton('Цветы', callback_data='flowers')
     item2 = types.InlineKeyboardButton('Вернуться в меню', callback_data='menu')
     markup.add(item1, item2)
     return markup
