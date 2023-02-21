@@ -8,7 +8,7 @@ bot = telebot.TeleBot(TOKEN)
 
 gc = gspread.service_account(filename="json\my-test-378416-ed0f5f5170ee.json")
 sh = gc.open("Копия Промокоды")
-
+worksheet = sh.sheet1
 
 @bot.message_handler(commands=['start'])
 def welcome_and_choice_categories(message):
@@ -50,7 +50,7 @@ def callback_inline(call):
                 item6 = types.InlineKeyboardButton('МТС', callback_data='mtc')
                 item7 = types.InlineKeyboardButton('Wildberries', callback_data='wildberries')
                 item8 = types.InlineKeyboardButton('Утконос', callback_data='utkonos')
-                item9 = types.InlineKeyboardButton('Зоозавр', callback_data='zoozavr')
+                item9 = types.InlineKeyboardButton('Зоозавр ТГ', callback_data='zoozavr')
                 item10 = types.InlineKeyboardButton('OBI', callback_data='obi')
                 item11 = types.InlineKeyboardButton('Galamart', callback_data='galamart')
                 item12 = types.InlineKeyboardButton('Вернуться в меню', callback_data='menu')
@@ -198,464 +198,527 @@ def callback_inline(call):
                 menu(call)
             elif call.data == 'yandexmarket':
                 message(call)
-                formattext(call,2)
+                cell_list = worksheet.findall("Яндекс Маркет")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshemarket())
-
             elif call.data == 'ozon':
                 message(call)
-                formattext(call, 3)
+                cell_list = worksheet.findall("OZON")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshemarket())
             elif call.data == 'sbermegamarket':
                 message(call)
-                formattext(call, 4)
-                formattext(call, 5)
-                formattext(call, 6)
-                formattext(call, 7)
-                formattext(call, 8)
-                formattext(call, 9)
-                formattext(call, 10)
-                formattext(call, 11)
+                cell_list = worksheet.findall("Сбермегамаркет")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshemarket())
             elif call.data == 'mvideo':
                 message(call)
-                formattext(call, 12)
+                cell_list = worksheet.findall("МВидео")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshemarket())
             elif call.data == 'aldorado':
                 message(call)
-                formattext(call, 13)
+                cell_list = worksheet.findall("Эльдорадо")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshemarket())
             elif call.data == 'mtc':
                 message(call)
-                formattext(call, 14)
+                cell_list = worksheet.findall("МТС")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshemarket())
             elif call.data == 'wildberries':
                 message(call)
-                formattext(call, 15)
-                formattext(call, 16)
-                formattext(call, 17)
+                cell_list = worksheet.findall("Wildberries")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshemarket())
             elif call.data == 'utkonos':
                 message(call)
-                formattext(call, 18)
-                formattext(call, 19)
-                formattext(call, 20)
+                cell_list = worksheet.findall("Утконос")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshemarket())
             elif call.data == 'zoozavr':
                 message(call)
-                formattext(call, 21)
+                cell_list = worksheet.findall("Зоозавр ТГ")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshemarket())
             elif call.data == 'obi':
                 message(call)
-                formattext(call, 22)
+                cell_list = worksheet.findall("OBI")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshemarket())
             elif call.data == 'galamart':
                 message(call)
-                formattext(call, 23)
-                formattext(call, 24)
+                cell_list = worksheet.findall("Galamart")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshemarket())
             elif call.data == 'alpha':
                 message(call)
-                formattext(call, 25)
-                formattext(call, 26)
-                formattext(call, 27)
+                cell_list = worksheet.findall("Альфа Банк")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'gaz':
                 message(call)
-                formattext(call, 28)
-                formattext(call, 29)
+                cell_list = worksheet.findall("Газпромбанк")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'tinkoffinst':
                 message(call)
-                formattext(call, 30)
-                formattext(call, 32)
-                formattext(call, 35)
-                formattext(call, 36)
-                formattext(call, 37)
-                formattext(call, 38)
-                formattext(call, 39)
-                formattext(call, 40)
+                cell_list = worksheet.findall("Tinkoff Инст")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'tinkoff':
                 message(call)
-                formattext(call, 31)
-                formattext(call, 33)
-                formattext(call, 34)
-                formattext(call, 41)
-                formattext(call, 42)
+                cell_list = worksheet.findall("Tinkoff")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'akbars':
                 message(call)
-                formattext(call, 43)
+                cell_list = worksheet.findall("Ак барс банк")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'home':
                 message(call)
-                formattext(call, 44)
+                cell_list = worksheet.findall("Home Сredit")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'open':
                 message(call)
-                formattext(call, 45)
-                formattext(call, 46)
-                formattext(call, 47)
-                formattext(call, 48)
+                cell_list = worksheet.findall("Открытие банк")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'renesans':
                 message(call)
-                formattext(call, 49)
+                cell_list = worksheet.findall("Ренессанс кредит")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'rosbank':
                 message(call)
-                formattext(call, 50)
-                formattext(call, 51)
+                cell_list = worksheet.findall("Росбанк")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'tochkabank':
                 message(call)
-                formattext(call, 52)
-                formattext(call, 53)
+                cell_list = worksheet.findall("Точка банк")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'ubrir':
                 message(call)
-                formattext(call, 54)
-                formattext(call, 55)
-                bot.send_message(call.message.chat.id,
-                                 "Действует только по ссылке")
+                cell_list = worksheet.findall("УБРиР ТГ")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'uralsib':
                 message(call)
-                formattext(call, 56)
+                cell_list = worksheet.findall("Уралсиб")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshebank())
             elif call.data == 'tinkoff_investments':
                 message(call)
-                formattext(call, 57)
+                cell_list = worksheet.findall("Тинькофф Инвестиции")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheinvest())
             elif call.data == 'freedome_finance':
                 message(call)
-                formattext(call, 58)
+                cell_list = worksheet.findall("Freedom Finance")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheinvest())
             elif call.data == 'vkusvill':
                 message(call)
-                formattext(call, 59)
+                cell_list = worksheet.findall("ВкусВилл")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'vinlab':
                 message(call)
-                formattext(call, 60)
+                cell_list = worksheet.findall("Винлаб")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'globus':
                 message(call)
-                formattext(call, 61)
-                formattext(call, 62)
-                formattext(call, 63)
+                cell_list = worksheet.findall("Глобус")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'deliveryclub':
                 message(call)
-                formattext(call, 64)
+                cell_list = worksheet.findall("Delivery Club")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'sbermarket':
                 message(call)
-                formattext(call, 65)
-                formattext(call, 66)
-                formattext(call, 67)
-                formattext(call, 68)
-                formattext(call, 69)
-                formattext(call, 70)
-                formattext(call, 71)
-                formattext(call, 72)
+                cell_list = worksheet.findall("Сбермаркет")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'lenta':
                 message(call)
-                formattext(call, 73)
-                formattext(call, 74)
-                formattext(call, 75)
+                cell_list = worksheet.findall("Лента онлайн")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'magnit':
                 message(call)
-                formattext(call, 75)
-                formattext(call, 76)
+                cell_list = worksheet.findall("Магнит")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'metro':
                 message(call)
-                formattext(call, 77)
+                cell_list = worksheet.findall("Metro")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'omolochko':
                 message(call)
-                formattext(call, 78)
+                cell_list = worksheet.findall("ОмолокО (Чистая линия)")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'pyaterochka':
                 message(call)
-                formattext(call, 79)
-                formattext(call, 81)
+                cell_list = worksheet.findall("Пятёрочка")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'perekrestok':
                 message(call)
-                formattext(call, 82)
-                formattext(call, 83)
-                formattext(call, 84)
-                formattext(call, 85)
-                formattext(call, 86)
+                cell_list = worksheet.findall("Перекрёсток")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'perekrestokvprok':
                 message(call)
-                formattext(call, 87)
-                formattext(call, 88)
-                formattext(call, 89)
-                formattext(call, 90)
-                formattext(call, 91)
-                formattext(call, 92)
+                cell_list = worksheet.findall("Перекресток Впрок")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'samokat':
                 message(call)
-                formattext(call, 93)
-                formattext(call, 94)
-                formattext(call, 95)
-                formattext(call, 96)
+                cell_list = worksheet.findall("Самокат")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'yandexlavka':
                 message(call)
-                formattext(call, 97)
+                cell_list = worksheet.findall("Яндекс Лавка")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'yandexeda':
                 message(call)
-                formattext(call, 98)
-                formattext(call, 99)
+                cell_list = worksheet.findall("Яндекс Еда")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshedelivery())
             elif call.data == 'aptekaru':
                 message(call)
-                formattext(call, 100)
+                cell_list = worksheet.findall("Аптека.ру")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshehealth())
             elif call.data == 'aptekasklad':
                 message(call)
-                formattext(call, 101)
-                formattext(call, 102)
+                cell_list = worksheet.findall("Аптека от склада")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshehealth())
             elif call.data == 'eapteka':
                 message(call)
-                formattext(call, 103)
-                formattext(call, 104)
-                formattext(call, 105)
+                cell_list = worksheet.findall("ЕАптека Тг")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshehealth())
             elif call.data == 'uteka':
                 message(call)
-                formattext(call, 106)
+                cell_list = worksheet.findall("Ютека")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshehealth())
             elif call.data == 'sberhealth':
                 message(call)
-                formattext(call, 107)
+                cell_list = worksheet.findall("Сбер Здоровье")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshehealth())
             elif call.data == 'burgerking':
                 message(call)
-                formattext(call, 108)
+                cell_list = worksheet.findall("Бургер Кинг")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                      "Куда отправимся дальше?", reply_markup=kudadalshcafe())
             elif call.data == 'kfc':
                 message(call)
-                formattext(call, 109)
+                cell_list = worksheet.findall("KFC")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshcafe())
             elif call.data == 'foodband':
                 message(call)
-                formattext(call, 110)
-                formattext(call, 111)
-                formattext(call, 112)
+                cell_list = worksheet.findall("FoodBand")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshcafe())
             elif call.data == 'mnogolososya':
                 message(call)
-                formattext(call, 113)
+                cell_list = worksheet.findall("Много лосося")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshcafe())
             elif call.data == 'niyama':
                 message(call)
-                formattext(call, 114)
-                formattext(call, 115)
-                formattext(call, 116)
+                cell_list = worksheet.findall("Нияма")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshcafe())
             elif call.data == 'tvoyapizza':
                 message(call)
-                formattext(call, 117)
-                formattext(call, 118)
-                formattext(call, 119)
-                formattext(call, 120)
-                formattext(call, 121)
+                cell_list = worksheet.findall("TVOЯ пицца")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshcafe())
             elif call.data == 'tanuki':
                 message(call)
-                formattext(call, 122)
-                formattext(call, 123)
-                formattext(call, 124)
+                cell_list = worksheet.findall("Тануки")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshcafe())
             elif call.data == 'yakitoria':
                 message(call)
-                formattext(call, 125)
-                formattext(call, 126)
-                formattext(call, 127)
+                cell_list = worksheet.findall("Якитория")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshcafe())
             elif call.data == 'flor2u':
                 message(call)
-                formattext(call, 128)
-                formattext(call, 129)
+                cell_list = worksheet.findall("Flor2U")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshflowers())
             elif call.data == 'cvetryad':
                 message(call)
-                formattext(call, 130)
-                formattext(call, 131)
+                cell_list = worksheet.findall("Цветочный ряд")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshflowers())
             elif call.data == 'vkmusic':
                 message(call)
-                formattext(call, 132)
+                cell_list = worksheet.findall("Vk музыка")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshepodpiska())
             elif call.data == 'paket':
                 message(call)
-                formattext(call, 133)
+                cell_list = worksheet.findall("Пакет")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshepodpiska())
             elif call.data == 'ogon':
                 message(call)
-                formattext(call, 134)
+                cell_list = worksheet.findall("Огонь")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshepodpiska())
             elif call.data == 'kinopoisk':
                 message(call)
-                formattext(call, 135)
+                cell_list = worksheet.findall("Кинопоиск")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshepodpiska())
             elif call.data == 'okko':
                 message(call)
-                formattext(call, 136)
+                cell_list = worksheet.findall("Okko")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshepodpiska())
             elif call.data == 'yandexplusmulti':
                 message(call)
-                formattext(call, 137)
+                cell_list = worksheet.findall("Яндекс плюс мульти")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshepodpiska())
             elif call.data == 'yandexafisha':
                 message(call)
-                formattext(call, 138)
+                cell_list = worksheet.findall("Яндекс Афиша")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshepodpiska())
             elif call.data == 'tamaris':
                 message(call)
-                formattext(call, 139)
-                formattext(call, 140)
+                cell_list = worksheet.findall("Tamaris")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheclothes())
             elif call.data == 'befree':
                 message(call)
-                formattext(call, 141)
+                cell_list = worksheet.findall("Befree")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheclothes())
             elif call.data == 'sportmaster':
                 message(call)
-                formattext(call, 142)
+                cell_list = worksheet.findall("Спортмастер")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheclothes())
             elif call.data == 'letual':
                 message(call)
-                formattext(call, 143)
-                formattext(call, 144)
-                formattext(call, 145)
-                formattext(call, 146)
-                formattext(call, 147)
+                cell_list = worksheet.findall("Летуаль")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheosmetics())
             elif call.data == 'goldapple':
                 message(call)
-                formattext(call, 148)
+                cell_list = worksheet.findall("Золотое Яблоко")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheosmetics())
             elif call.data == 'ulibkaradugi':
                 message(call)
-                formattext(call, 149)
+                cell_list = worksheet.findall("Улыбка радуги")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheosmetics())
             elif call.data == 'samokatbeatu':
                 message(call)
-                formattext(call, 150)
+                cell_list = worksheet.findall("Самокат Бьюти")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheosmetics())
             elif call.data == 'taximaksim':
                 message(call)
-                formattext(call, 151)
+                cell_list = worksheet.findall("Такси Максим")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalshetaxi())
             elif call.data == 'tinkoffstrahavto':
                 message(call)
-                formattext(call, 152)
-                formattext(call, 153)
+                cell_list = worksheet.findall("Тинькофф Страхование Авто")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheinsurance())
             elif call.data == 'sberstrahavto':
                 message(call)
-                formattext(call, 154)
-                formattext(call, 155)
+                cell_list = worksheet.findall("Сбер Страхование Авто")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheinsurance())
             elif call.data == 'sberstrahdom':
                 message(call)
-                formattext(call, 156)
+                cell_list = worksheet.findall("Сбер Страхование Жилье")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheinsurance())
             elif call.data == 'tinkoffput':
                 message(call)
-                formattext(call, 157)
-                formattext(call, 158)
+                cell_list = worksheet.findall("Тинькофф Путешествия")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheairtickets())
             elif call.data == 'yandexput':
                 message(call)
-                formattext(call, 159)
-                formattext(call, 160)
+                cell_list = worksheet.findall("Яндекс путешествия ")
+                for i in cell_list:
+                    formattext(call, int(i.row))
                 bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=kudadalsheairtickets())
             else:
@@ -758,20 +821,19 @@ def kudadalsheairtickets():
 
 def message(call):
     bot.send_message(call.message.chat.id, """Чтобы успешно активировать промокод👌 достаточно: 
-                                              перейти по ссылке или скопировать значение купона с 
-                                              данной страницы и ввести его на сайте компании☺️""")
+перейти по ссылке или скопировать значение купона с 
+данной страницы и ввести его на сайте компании☺️""")
 
-def formattext(call,n):
+def formattext(call, n):
     worksheet = sh.sheet1
     values_list = worksheet.row_values(n)
-    print(values_list)
     bot.send_message(call.message.chat.id, f"""Название: {values_list[0]}
-                                                               Скидка: {values_list[3]}
-                                                               Описание: {values_list[7]} 
-                                                               Действует до: {values_list[5]}
-                                                               Регион: {values_list[6]}
-                                                               Ссылка: {values_list[4]}
-                                                               Промокод ниже👇""",
+Скидка: {values_list[3]}
+Описание: {values_list[7]} 
+Действует до: {values_list[5]}
+Регион: {values_list[6]}
+Ссылка: {values_list[4]}
+Промокод ниже👇""",
                      parse_mode='html')
     bot.send_message(call.message.chat.id, f"{values_list[2]}")
 
