@@ -31,37 +31,40 @@ def welcome_and_choice_categories(message):
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
-    if call.message:
-        cell_list = worksheet.findall(f"{call.data}")
-        values_list = worksheet.col_values(9)
-        values_list = set(values_list)
-        if call.data == 'menu':
-            menu(call)
-        elif call.data == cell_list[0].value:
-            if cell_list[0].value in  values_list:
-                markup = types.InlineKeyboardMarkup(row_width=1)
-                list_of_category = []
-                for i in cell_list:
-                    list_of_category.append(worksheet.acell(f'A{i.row}').value)
-                list_of_category = set(list_of_category)
-                for i in list_of_category:
-                    item = types.InlineKeyboardButton(f'{i}', callback_data=f'{i}')
-                    markup.add(item)
-                item2 = types.InlineKeyboardButton('Вернуться в меню', callback_data='menu')
-                markup.add(item2)
-                bot.send_message(call.message.chat.id, 'Выберите категорию в которой хотите получить скидку',
+    try:
+        if call.message:
+            cell_list = worksheet.findall(f"{call.data}")
+            values_list = worksheet.col_values(9)
+            values_list = set(values_list)
+            if call.data == 'menu':
+                menu(call)
+            elif call.data == cell_list[0].value:
+                if cell_list[0].value in  values_list:
+                    markup = types.InlineKeyboardMarkup(row_width=1)
+                    list_of_category = []
+                    for i in cell_list:
+                        list_of_category.append(worksheet.acell(f'A{i.row}').value)
+                    list_of_category = set(list_of_category)
+                    for i in list_of_category:
+                        item = types.InlineKeyboardButton(f'{i}', callback_data=f'{i}')
+                        markup.add(item)
+                    item2 = types.InlineKeyboardButton('Вернуться в меню', callback_data='menu')
+                    markup.add(item2)
+                    bot.send_message(call.message.chat.id, 'Выберите категорию в которой хотите получить скидку',
                              reply_markup=markup, parse_mode='html')
-            else:
-                message(call)
-                markup = types.InlineKeyboardMarkup(row_width=1)
-                cell_list = worksheet.findall(f"{call.data}")
-                for i in cell_list:
-                    formattext(call, int(i.row))
-                item1 = types.InlineKeyboardButton(f"{call.data}", callback_data=f"{call.data}")
-                item2 = types.InlineKeyboardButton('Вернуться в меню', callback_data='menu')
-                markup.add(item1, item2)
-                bot.send_message(call.message.chat.id,
+                else:
+                    message(call)
+                    markup = types.InlineKeyboardMarkup(row_width=1)
+                    cell_list = worksheet.findall(f"{call.data}")
+                    for i in cell_list:
+                        formattext(call, int(i.row))
+                    item1 = types.InlineKeyboardButton(f"{call.data}", callback_data=f"{call.data}")
+                    item2 = types.InlineKeyboardButton('Вернуться в меню', callback_data='menu')
+                    markup.add(item1, item2)
+                    bot.send_message(call.message.chat.id,
                                  "Куда отправимся дальше?", reply_markup=markup)
+    except Exception as e:
+        print(repr(e))
 
 
 def message(call):
